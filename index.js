@@ -1,6 +1,32 @@
 //template_gk5l2is
-//service_o2400mg
+//service_u3dmqzx
 //3ZOkmaBYsFEfO7boJ
+let isModalOpen = false;
+let contrastToggle = false;
+const scaleFactor = 1 / 20;
+
+function moveBackground(event) {
+    const shapes = document.querySelectorAll(".shape");
+    const x = event.clientX * scaleFactor;
+    const y = event.clientY * scaleFactor;
+    
+    for (let i = 0; i < shapes.length; ++i) {
+        const isOdd = i % 2 !== 0;
+        const boolInt = isOdd ? -1 : 1;
+        shapes[i].style.transform = `translate(${x * boolInt}px, ${y * boolInt}px)`;
+    }
+}
+
+
+function toggleContrast() {
+    contrastToggle = !contrastToggle;
+    if (contrastToggle) {
+        document.body.classList += " dark-theme"
+    }
+    else {
+        document.body.classList.remove("dark-theme")
+    }
+}
 
 function contact(event) {
     event.preventDefault();
@@ -9,7 +35,7 @@ function contact(event) {
     loading.classList += " modal__overlay--visible" 
     emailjs 
         .sendForm(
-            'sservice_o2400mg',
+            'service_u3dmqzx',
             'template_gk5l2is',
             event.target,
             '3ZOkmaBYsFEfO7boJ'
@@ -22,4 +48,12 @@ function contact(event) {
                 "The email service is temporarily unavailable. Please contact me directly at katiomay@gmail.com"
             );
     } )
+}
+function toggleModal(){
+    if (isModalOpen) {
+        isModalOpen = false;
+        return document.body.classList.remove("modal--open");
+    }
+    isModalOpen = true;
+    document.body.classList += " modal--open"
 }
